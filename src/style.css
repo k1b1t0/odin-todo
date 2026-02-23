@@ -87,13 +87,19 @@ nav > *:hover {
     color: white;
 }
 
-#project-modal {
+#project-modal, #todo-modal {
     border: none;
     border-radius: 8px;
     padding: 15px;
 }
 
-#project-modal::backdrop {
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#project-modal::backdrop, #todo-modal::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
 }
 

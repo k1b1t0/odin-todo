@@ -11,6 +11,7 @@ class Project {
     // add Todo
     addTodo(...todos) {
         this.todos.push(...todos)
+        console.log('PROJECT' + this.id + 'ADDED' + todos)
     }
 
     // get all Todo

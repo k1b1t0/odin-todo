@@ -1,17 +1,62 @@
 import { displayProjects } from "../ui/allProjects.js"
 import { displayTodos } from "../ui/projectView.js"
 import Project from "../core/project.js"
+import Todo from "../core/todo.js"
 
 const contentDiv = document.querySelector('.content')
 const sidebar = document.querySelector('#sidebar')
 
 const projectModal = document.querySelector('#project-modal')
 const projectForm = document.querySelector('#project-form')
-const projectModalClose = document.querySelector('#close-modal')
+const projectModalClose = document.querySelector('#close-project-modal')
+
+const todoModal = document.querySelector('#todo-modal')
+const todoForm = document.querySelector('#todo-form')
+const todoModalClose = document.querySelector('#close-todo-modal')
 
 function loadContent(content) {
     contentDiv.innerHTML = ''
     contentDiv.appendChild(content)
+}
+
+function loadProjectDropdown(projects) {
+    const select = document.querySelector('#todo-project')
+
+    select.innerHTML = ''
+
+    projects.forEach((project) => {
+        const option = document.createElement('option')
+        option.value = project.id
+        option.textContent = project.name
+
+        select.appendChild(option)
+    })
+}
+
+function addELTodoForm(projects) {
+    todoModalClose.addEventListener('click', () => todoModal.close())
+    todoForm.addEventListener('submit', (e) => {
+        const formData = new FormData(todoForm)
+        const title = formData.get('title')
+        const description = formData.get('description')
+        const date = formData.get('due')
+        const mark = formData.get('mark')
+        const priority = formData.get('priority')
+        const projectId = formData.get('project')
+
+        const project = projects.find((project) => project.id === projectId)
+        if (project) {
+            const todo = new Todo(title, description, date, priority, mark)
+            project.addTodo(todo)
+        }
+
+        const projectDiv = document.querySelector('.project-div')
+        if (projectDiv) {
+            loadContent(displayProjects(projects))
+        }
+
+        todoForm.reset()
+    })
 }
 
 function addELProjectForm(projects) {
@@ -45,6 +90,10 @@ function addELSidebar(projects) {
                     break
                 case 'add-project':
                     projectModal.showModal()
+                    break
+                case 'add-todo':
+                    loadProjectDropdown(projects)
+                    todoModal.showModal()
                     break
                 default:
                     return
@@ -184,4 +233,4 @@ function todoToHTML(todo) {
     return todoLine
 }
 
-export {todoToHTML, projectToHTML, addELContent, loadContent, addELSidebar, addELProjectForm}
+export {todoToHTML, projectToHTML, addELContent, loadContent, addELSidebar, addELProjectForm, addELTodoForm}

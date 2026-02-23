@@ -2,7 +2,7 @@ import "./style.css"
 
 import Todo from "./core/todo.js"
 import Project from "./core/project.js"
-import { addELContent, addELProjectDiv, addELProjectForm, addELSidebar, loadContent, projectToHTML } from "./logic/dom.js"
+import { addELContent, addELProjectDiv, addELProjectForm, addELSidebar, addELTodoForm, loadContent, projectToHTML } from "./logic/dom.js"
 import { displayProjects } from "./ui/allProjects.js"
 import { displayTodos } from "./ui/projectView.js"
 
@@ -13,6 +13,7 @@ const projects = []
 addELContent(projects)
 addELSidebar(projects)
 addELProjectForm(projects)
+addELTodoForm(projects)
 
 // demo data
 const a1 = new Todo("a1", 1, 1, 1, true)
