@@ -6,13 +6,18 @@
     <title>TodoList</title>
 </head>
 <body>
-    <h1>My Todo List</h1>
-    <div class="project-div">
-        <div class="project-card">
-            <h1 class="name">Project A</h1>
+    <nav id="sidebar">
+        <h2 id="home">My Todo List</h2>
+        <h2 id="projects">Projects</h2>
+        <h2 id="add-project">Add Project</h2>
+    </nav>
+    <div class="content">
+        <div class="todo-div">
+            <h1>Project A</h1>
             <div class="todo-undone">
                 <input type="checkbox" id="a1" name="a1" value="a1">
                 <label for="a1">A1 task</label>
+                <p>date</p>
             </div>
             <div class="todo-done">
                 <input type="checkbox" id="a2" name="a2" value="a2">
@@ -20,5 +25,15 @@
             </div>
         </div>
     </div>
+    <dialog id="project-modal">
+        <form method="dialog" id="project-form">
+            <h3>New Project</h3>
+            <input type="text" name="projectName" required placeholder="name..." autofocus>
+            <div class="btns">
+                <button type="button" id="close-modal">Cancel</button>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>

@@ -6,12 +6,12 @@ class Todo {
     #id;
     #mark = false;
 
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, mark = false) {
         this.#title = title
         this.#description = description
         this.#dueDate = dueDate
         this.#priority = priority
-        this.#mark = false
+        this.#mark = mark
         this.#id = crypto.randomUUID()
 
         console.log("CREATED TODO")
@@ -32,8 +32,13 @@ class Todo {
         return todo
     }
 
-    mark() {
-        this.#mark = true
+    getId() {
+        return this.#id
+    }
+
+    mark(mark) {
+        this.#mark = mark
+        console.log(this.#mark + this.#id)
     }
 
     isDone() {
